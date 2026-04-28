@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOWL - House of Wonder and Learning</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    /* --- VARIABEL WARNA BERDASARKAN LOGO HOWL --- */
+    :root {
+        --howl-primary: #853e34; /* Cokelat Terakota Logo */
+        --howl-secondary: #c27a69; /* Cokelat Muda / Earthy */
+        --howl-bg-light: #fbf9f6; /* Warna Kertas/Sand yang hangat */
+        --howl-bg-dark: #2a1f1d; /* Cokelat Sangat Gelap */
+        --howl-text: #3d3331; /* Teks utama */
+        --howl-accent: #e5c1a3; /* Krem Aksen */
+        
+        --font-heading: 'Playfair Display', serif;
+        --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* --- RESET & BASIC --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: var(--font-body);
+        background-color: var(--howl-bg-light);
+        color: var(--howl-text);
+        line-height: 1.6;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
+    h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--howl-primary); }
+    a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+    img { max-width: 100%; height: auto; }
+
+    /* --- HEADER / NAVBAR --- */
+    header {
+        position: fixed;
+        top: 0; left: 0; width: 100%;
+        background-color: rgba(251, 249, 246, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(133, 62, 52, 0.1);
+    }
+    .logo-nav {
+        display: flex;
+        align-items: center;
+    }
+    .logo-nav img {
+        max-height: 55px;
+        width: auto;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+    .logo-nav img:hover {
+        transform: scale(1.05);
+    }
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        list-style: none;
+    }
+    .nav-links a { font-weight: 600; font-size: 0.95rem; }
+    .nav-links a:hover { color: var(--howl-secondary); }
+    .nav-info {
+        display: flex;
+        gap: 1.5rem;
+        font-size: 0.9rem;
+        color: var(--howl-primary);
+        font-weight: 500;
+    }
+    .nav-info i { margin-right: 5px; }
+
+    /* --- HERO SECTION --- */
+    .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: linear-gradient(rgba(42, 31, 29, 0.6), rgba(133, 62, 52, 0.7)), url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=2070&auto=format&fit=crop') center/cover;
+        color: var(--howl-bg-light);
+        padding: 0 5%;
+        margin-top: 80px;
+    }
+    .hero-content h1 {
+        font-size: 4rem;
+        color: #fff;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    }
+    .hero-content p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 2rem;
+        font-weight: 300;
+    }
+    .btn-primary {
+        background-color: var(--howl-primary);
+        color: #fff;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        display: inline-block;
+        border: 2px solid var(--howl-primary);
+    }
+    .btn-primary:hover {
+        background-color: transparent;
+        color: var(--howl-bg-light);
+        border-color: var(--howl-bg-light);
+    }
+
+    /* --- GENERAL SECTION PADDING --- */
+    .section-padding { padding: 6rem 5%; }
+    .section-title { text-align: center; margin-bottom: 4rem; }
+    .section-title h2 { font-size: 2.8rem; margin-bottom: 1rem; }
+    .section-title .divider {
+        width: 80px; height: 3px;
+        background-color: var(--howl-secondary);
+        margin: 0 auto;
+    }
+
+    /* --- PROFIL PERUSAHAAN --- */
+    .profile-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .profile-text p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        text-align: justify;
+    }
+    .profile-quote {
+        font-family: var(--font-heading);
+        font-size: 1.8rem;
+        color: var(--howl-primary);
+        font-style: italic;
+        border-left: 4px solid var(--howl-secondary);
+        padding-left: 1.5rem;
+        margin-top: 2rem;
+    }
+    .profile-image {
+        background: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=2070&auto=format&fit=crop') center/cover;
+        height: 400px;
+        border-radius: 20px 20px 20px 100px;
+        box-shadow: 20px 20px 0 var(--howl-accent);
+    }
+
+    /* --- SESSIONS & PRICING --- */
+    .pricing-section {
+        background-color: var(--howl-primary);
+        color: var(--howl-bg-light);
+    }
+    .pricing-section .section-title h2 { color: var(--howl-bg-light); }
+    .pricing-section .divider { background-color: var(--howl-accent); }
+    
+    .price-badge {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    .price-badge h3 {
+        font-family: var(--font-body);
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: var(--howl-accent);
+        margin: 0;
+    }
+    .price-badge p { font-size: 1.2rem; opacity: 0.9; letter-spacing: 2px; text-transform: uppercase; }
+
+    .sessions-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .session-card {
+        background-color: var(--howl-bg-light);
+        color: var(--howl-text);
+        padding: 3rem;
+        border-radius: 20px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    .session-card::before {
+        content: '';
+        position: absolute; top: 0; left: 0; width: 100%; height: 6px;
+        background-color: var(--howl-secondary);
+    }
+    .session-icon { font-size: 3rem; color: var(--howl-primary); margin-bottom: 1rem; }
+    .session-card h3 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .session-card .time {
+        display: inline-block;
+        background: var(--howl-accent);
+        color: var(--howl-primary);
+        padding: 5px 15px;
+        border-radius: 50px;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+
+    /* --- ROOM & FACILITIES PREVIEW --- */
+    .facilities-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .facilities-grid .fac-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .fac-card {
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease;
+        border: 1px solid rgba(133, 62, 52, 0.1);
+    }
+    .fac-card:hover { transform: translateY(-10px); border-color: var(--howl-secondary); }
+    .fac-img {
+        height: 200px;
+        background-color: var(--howl-accent);
+        background-size: cover;
+        background-position: center;
+    }
+    .fac-content { padding: 2rem; text-align: center; }
+    .fac-content h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .fac-content p { font-size: 0.95rem; color: #666; }
+
+    /* --- BLOGGER POST STYLES (Mockup) --- */
+    .blog-area {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 4rem 5%;
+    }
+    .post {
+        background: #fff;
+        padding: 3rem;
+        border-radius: 16px;
+        margin-bottom: 3rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        border: 1px solid rgba(133, 62, 52, 0.1);
+    }
+    .post-title {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        font-family: var(--font-heading);
+    }
+    .post-title a { color: var(--howl-primary); }
+    .post-title a:hover { color: var(--howl-secondary); }
+    .post-header-line-1 { font-size: 0.9rem; color: #777; margin-bottom: 1.5rem; border-bottom: 1px solid var(--howl-accent); padding-bottom: 1rem; }
+    .post-body { font-size: 1.05rem; line-height: 1.8; color: #444; }
+    .post-footer { margin-top: 2rem; border-top: 1px solid var(--howl-accent); padding-top: 1rem; }
+    .blog-pager { text-align: center; padding: 2rem 0; }
+    .blog-pager a { background: var(--howl-primary); color: #fff; padding: 10px 20px; border-radius: 5px; margin: 0 5px; display: inline-block; }
+
+    /* --- FOOTER --- */
+    footer {
+        background-color: var(--howl-bg-dark);
+        color: var(--howl-bg-light);
+        padding: 4rem 5% 2rem;
+    }
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto 3rem;
+    }
+    .footer-brand h2 { color: var(--howl-accent); font-size: 2.5rem; margin-bottom: 1rem; font-family: var(--font-heading); }
+    .footer-title { font-size: 1.2rem; color: var(--howl-secondary); margin-bottom: 1.5rem; font-family: var(--font-heading); }
+    .footer-info p { margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px; opacity: 0.8; }
+    
+    .social-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
+    .social-links a {
+        display: flex; align-items: center; justify-content: center;
+        width: 40px; height: 40px;
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 50%;
+        font-size: 1.2rem;
+    }
+    .social-links a:hover { background-color: var(--howl-secondary); color: #fff; }
+    
+    .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        font-size: 0.9rem;
+        opacity: 0.6;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 992px) {
+        .nav-info { display: none; }
+        .hero-content h1 { font-size: 3rem; }
+        .profile-container, .sessions-grid { grid-template-columns: 1fr; }
+        .profile-image { height: 300px; border-radius: 20px; box-shadow: 10px 10px 0 var(--howl-accent); }
+        .price-badge h3 { font-size: 2.5rem; }
+    }
+    @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .section-padding { padding: 4rem 5%; }
+        .hero-content h1 { font-size: 2.5rem; }
+        .post { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="logo-nav" href="/">
+      <img alt="HOWL Logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhrcWTvivMvKOv_nK0EKb5qmdrm3_ZmB3XpkQCc8M-JYGcJptH7RRSb9sPePeu0C354gXgmSFqAjOscW3FOtUj94pPjf0CV5KTeAyQBG1aNQrNdrv7g-GMNK8gq421h4mpwV7zOzDJFnE9CSh6UdjMY0bIpC3L6yRqLD6YA6vasf87ccdU6FOwccvEfTfPU/s320/image.png">
+    </a>    
+    <div class="nav-info">
+      <span><i class="fa-regular fa-clock"></i> Sen - Min (09.00 - 21.00)</span>
+      <span><i class="fa-solid fa-location-dot"></i> Ciumbuleuit, Bandung</span>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#profil">Profil</a></li>
+        <li><a href="#sesi">Sesi &amp; Harga</a></li>
+        <li><a href="#fasilitas">Ruangan</a></li>
+        <li><a href="#blog-area">Artikel</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>House of Wonder and Learning</h1>
+      <p>Ruang komunal yang dirancang untuk kamu yang ingin produktif, mengekspresikan kreativitas, atau sekadar menikmati waktu sendiri dengan tenang layaknya di rumah sendiri.</p>
+      <a class="btn-primary" href="#sesi">Lihat Sesi Kunjungan</a>
+    </div>
+  </section>
+
+  <section class="section-padding" id="profil">
+    <div class="section-title">
+      <h2>Tentang HOWL</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="profile-container">
+      <div class="profile-image"></div>
+      <div class="profile-text">
+        <p><strong>HOWL (House of Wonder and Learning)</strong> hadir sebagai respons atas kebutuhan ruang yang menyeimbangkan fokus bekerja, ekspresi artistik, dan interaksi sosial. Kami menggabungkan konsep <em>coworking space</em> berbentuk rumah, perpustakaan yang hangat, <em>boardgame house</em>, serta ruang kreatif.</p>
+        <p>Target pengunjung kami sangat beragam, mulai dari <strong>Tipe Produktif</strong> yang ingin mengejar deadline, <strong>Tipe Literasi &amp; Kreatif</strong> yang mencari ketenangan untuk me-time, hingga <strong>Tipe Sosial &amp; Rekreasi</strong> yang mencari hiburan interaktif bersama teman-teman.</p>
+        <div class="profile-quote">
+          "Tempat yang unik dengan suasana hangat, di mana setiap ruangan memiliki ceritanya sendiri."
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding pricing-section" id="sesi">
+    <div class="section-title">
+      <h2>Sesi &amp; Harga Tiket Masuk</h2>
+      <div class="divider"></div>
+    </div>
+    
+    <div class="price-badge">
+      <h3>Rp 25.000</h3>
+      <p>Per Sesi Kunjungan</p>
+    </div>
+
+    <div class="sessions-grid">
+      <div class="session-card">
+        <div class="session-icon"><i class="fa-solid fa-sun"></i></div>
+        <h3>Early Bird</h3>
+        <span class="time">09.00 - 15.00 WIB</span>
+        <p>Sesi pagi hingga siang hari. Sangat cocok bagi kamu (Tipe Produktif) yang butuh ketenangan maksimal untuk bekerja (WFA) atau mengerjakan tugas akademik dengan fokus penuh.</p>
+      </div>
+      
+      <div class="session-card">
+        <div class="session-icon"><i class="fa-solid fa-moon"></i></div>
+        <h3>Night Owl</h3>
+        <span class="time">15.00 - 21.00 WIB</span>
+        <p>Sesi sore hingga malam hari. Waktu yang tepat untuk melepas penat, menikmati aktivitas seni (DIY Kit/Melukis), bersosialisasi, atau bermain boardgame bersama teman sepulang beraktivitas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding" id="fasilitas">
+    <div class="section-title">
+      <h2>Eksplorasi Ruangan Kami</h2>
+      <div class="divider"></div>
+    </div>
+    
+    <div class="facilities-grid">
+      <div class="fac-card">
+        <div class="fac-img" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop');"></div>
+        <div class="fac-content">
+          <h3>Focus Room</h3>
+          <p>Area tenang dan estetik yang didedikasikan khusus untuk WFA, nugas, dan kebutuhan produktivitas tanpa gangguan.</p>
+        </div>
+      </div>
+      <div class="fac-card">
+        <div class="fac-img" style="background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=1000&auto=format&fit=crop');"></div>
+        <div class="fac-content">
+          <h3>Perpustakaan</h3>
+          <p>Tempat cozy untuk me-time. Menyediakan koleksi buku kurasi seperti program "Book of The Month" untuk memantik ide.</p>
+        </div>
+      </div>
+      <div class="fac-card">
+        <div class="fac-img" style="background-image: url('https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=1000&auto=format&fit=crop');"></div>
+        <div class="fac-content">
+          <h3>Creative Room</h3>
+          <p>Ruang berekspresi seni! Dilengkapi perlengkapan melukis, Paint by Number, merakit Lego, hingga berbagai DIY Kit.</p>
+        </div>
+      </div>
+      <div class="fac-card">
+        <div class="fac-img" style="background-image: url('https://images.unsplash.com/photo-1610890716171-6b1bb98ffaed?q=80&w=1000&auto=format&fit=crop');"></div>
+        <div class="fac-content">
+          <h3>Boardgame House</h3>
+          <p>Ruang komunal yang asik untuk bersosialisasi dan adu strategi bersama teman-teman melalui beragam koleksi board game interaktif.</p>
+        </div>
+      </div>
+      <div class="fac-card">
+        <div class="fac-img" style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1000&auto=format&fit=crop');"></div>
+        <div class="fac-content">
+          <h3>The Attic</h3>
+          <p>Sudut rahasia di area loteng yang menawarkan nuansa homey dan hangat. Pas untuk diskusi intim atau membaca santai.</p>
+        </div>
+      </div>
+      <div class="fac-card">
+        <div class="fac-img" style="background-image: url('https://images.unsplash.com/photo-1524230572899-a752b6511f40?q=80&w=1000&auto=format&fit=crop');"></div>
+        <div class="fac-content">
+          <h3>Outdoor Space</h3>
+          <p>Area terbuka hijau untuk mencari sirkulasi udara segar, bersantai di sore hari, atau mengobrol rileks di luar ruangan.</p>
+        </div>
+      </div>
+      <div class="fac-card">
+        <div class="fac-img" style="background-image: url('https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1000&auto=format&fit=crop');"></div>
+        <div class="fac-content">
+          <h3>Event &amp; Story Session</h3>
+          <p>Wadah serbaguna untuk acara komunitas (seperti Howlmates Speed Dating) dan wadah bertukar cerita dengan kenalan baru.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="blog-area" id="blog-area">
+    <div class="section-title">
+      <h2>Kabar Terbaru dari HOWL</h2>
+      <div class="divider"></div>
+    </div>
+    
+    <div class="blog-posts hfeed">
+      
+      <div class="post hentry uncustomized-post-template">
+        <h3 class="post-title entry-title">
+          <a href="#">Welcome to HOWL: Rumah Keduamu di Bandung untuk Fokus &amp; Berkreasi</a>
+        </h3>
+        
+        <div class="post-header">
+          <div class="post-header-line-1">
+            <span class="post-timestamp">28 April 2026</span>
+          </div>
+        </div>
+
+        <div class="post-body entry-content">
+          <p>Pernah merasa bosan dengan suasana cafe yang itu-itu saja saat akhir pekan? Atau butuh tempat yang benar-benar tenang untuk mengejar deadline tugas yang menumpuk? Selamat datang di <strong>HOWL (House of Wonder and Learning)</strong>.</p>
+          <p>Berlokasi di Jl. Cisatu No.11A, Ciumbuleuit, Kota Bandung, HOWL bukan sekadar tempat nongkrong biasa. Kami merancang tempat ini sebagai coworking space berbentuk rumah yang hangat, lengkap dengan perpustakaan, boardgame house, dan ruang kreatif untuk menggambar atau sekadar merakit Lego.</p>
+          <div style="clear: both;"></div>
+        </div>
+
+        <div class="post-footer">
+          <div class="post-footer-line post-footer-line-1">
+            <span class="post-labels">
+              Tags: <a href="#" rel="tag">Informasi</a>, <a href="#" rel="tag">Event</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="blog-pager" id="blog-pager">
+      <span id="blog-pager-older-link">
+        <a class="blog-pager-older-link" href="#">Lebih Lama &rarr;</a>
+      </span>
+    </div>
+    <div style="clear:both;"></div>
+
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h2>HOWL</h2>
+        <p>House of Wonder and Learning.</p>
+        <p style="margin-top: 10px; opacity: 0.8;">Ruang komunal, perpustakaan cafe, dan wadah kreativitas untuk generasi muda.</p>
+      </div>
+      <div class="footer-info">
+        <h3 class="footer-title">Informasi Operasional</h3>
+        <p><i class="fa-solid fa-location-dot" style="margin-top: 4px;"></i> <span>Jl. Cisatu No.11A, Ciumbuleuit,<br>Kota Bandung</span></p>
+        <p><i class="fa-regular fa-clock" style="margin-top: 4px;"></i> <span>Senin - Minggu<br>09.00 - 21.00 WIB</span></p>
+      </div>
+      <div class="footer-info">
+        <h3 class="footer-title">Terhubung Bersama Kami</h3>
+        <p>Jelajahi sudut <em>hidden gem</em> kami melalui lini masa media sosial.</p>
+        <div class="social-links">
+          <a aria-label="Instagram" href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a aria-label="TikTok" href="#"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 HOWL Library &amp; Creative Space. Designed with warmth.
+    </div>
+  </footer>
+
+</body>
+</html>
